@@ -1,11 +1,15 @@
 <template>
   <div class="boards">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="http://localhost:8080/#/">Home</a>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
+      <a
+        class="navbar-brand"
+        href="http://localhost:8080/#/"
+        style="font-variant: all-small-caps"
+      >Home</a>
       <div class="navbar" id="navbarSupportedContent">
         <button class="btn btn-warning" @click="logout">Log Out</button>
       </div>
-    </nav>Welcome to your boards
+    </nav>Welcome to your boards!
     <br />
     <br />
     <form @submit.prevent="createBoard">
@@ -15,12 +19,16 @@
       <button type="submit">Create Board</button>
     </form>
     <br />
-    <div v-for="board in boards" :key="board._id">
-      <router-link :to="{name: 'board', params: {boardId: board._id}}">{{board.title}}</router-link>
-      <button class="btn btn-danger" @click="deleteBoard(board._id)">
-        <i class="fas fa-trash-alt"></i>
-      </button>
-    </div>
+    <dl>
+      <div v-for="board in boards" :key="board._id">
+        <dt>
+          <router-link :to="{name: 'board', params: {boardId: board._id}}">{{board.title}}</router-link>
+          <button class="btn btn-danger" @click="deleteBoard(board._id)">
+            <i class="fas fa-trash-alt trash-right"></i>
+          </button>
+        </dt>
+      </div>
+    </dl>
   </div>
 </template>
 
@@ -57,3 +65,16 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.trash-right {
+  position: relative;
+  float: right;
+  cursor: pointer;
+}
+
+.trash-right:hover:before {
+  font-family: "FontAwesome";
+  content: "\f056";
+}
+</style>

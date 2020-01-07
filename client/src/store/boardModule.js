@@ -13,6 +13,11 @@ let api = Axios.create({
 
 export default {
   actions: {
+    getBoardById({ commit, dispatch }, boardId) {
+      api.get("boards/" + boardId).then(res => {
+        commit("setResource", { resource: "boards", data: res.data });
+      });
+    },
     getBoards({ commit, dispatch }) {
       api.get("boards").then(res => {
         commit("setResource", { resource: "boards", data: res.data });

@@ -23,7 +23,7 @@ export default {
   name: "board",
   mounted() {
     this.$store.dispatch("getListsByBoardId", this.boardId);
-    this.$store.dispatch("");
+    this.$store.dispatch("getBoardById", this.boardId);
   },
   data() {
     return {
@@ -42,9 +42,10 @@ export default {
     board() {
       return (
         // TODO This does not work on page reload because the boards array is empty in the store
-        this.$store.state.boards.find(b => b._id == this.boardId) || {
-          title: "Loading..."
-        }
+        this.$store.state.boards
+        // .find(b => b._id == this.boardId) || {
+        //   title: "Loading..."
+        // }
       );
     }
   },
