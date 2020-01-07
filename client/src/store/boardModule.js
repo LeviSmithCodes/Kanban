@@ -20,8 +20,8 @@ export default {
     },
     createBoard({ commit, dispatch }, boardData) {
       api.post("boards", boardData).then(res => {
-        // commit("addResource", { resource: "boards", data: res.data });
-        dispatch("getBoards");
+        commit("addResource", { resource: "boards", data: res.data });
+        // dispatch("getBoards");
       });
     },
     deleteBoard({ commit, dispatch }, boardId) {

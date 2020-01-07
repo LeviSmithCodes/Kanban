@@ -10,6 +10,7 @@
     <br />
     <div v-for="list in lists" :key="list._id">
       {{list.title}}
+      <!-- {{lists.title}} -->
       <button class="btn btn-danger" @click="deleteList(list._id)">
         <i class="fas fa-trash-alt"></i>
       </button>
@@ -21,10 +22,12 @@
 export default {
   name: "board",
   mounted() {
-    this.$store.dispatch("getBoards");
+    this.$store.dispatch("getListsByBoardId", this.boardId);
+    this.$store.dispatch("");
   },
   data() {
     return {
+      // lists: [],
       newList: {
         title: "",
         boardId: this.boardId
@@ -33,11 +36,8 @@ export default {
   },
   computed: {
     lists() {
-      return (
-        this.$store.state.lists.find(l => l.boardId == this.boardId) || {
-          title: "Loading lists..."
-        }
-      );
+      return this.$store.state.lists;
+      // ) //   l => l.boardId == this.$route.params.id // .find(
     },
     board() {
       return (
@@ -50,8 +50,13 @@ export default {
   },
   methods: {
     createList() {
-      this.$store.dispatch("createList", this.newList);
-      this.newList = { title: "" };
+      let list = { ...this.newList };
+      debugger;
+      this.$store.dispatch("createList", list);
+      this.newList = { title: "", boardId: this.boardId };
+    },
+    deleteList(id) {
+      this.$store.dispatch("deleteList", { listId: id, boardId: this.boardId });
     }
   },
   props: ["boardId"]
