@@ -3,6 +3,8 @@ import Vuex from "vuex";
 import Axios from "axios";
 import router from "../router/index";
 import AuthService from "../AuthService";
+import boardModule from "./boardModule.js";
+import listModule from "./listModule.js";
 
 Vue.use(Vuex);
 
@@ -18,12 +20,23 @@ let api = Axios.create({
 });
 
 export default new Vuex.Store({
+  modules: {
+    boardModule,
+    listModule
+  },
   state: {
     user: {},
     boards: [],
-    activeBoard: {}
+    activeBoard: {},
+    lists: []
   },
   mutations: {
+    setResource(state, payload) {
+      state[payload.resource] = payload.data;
+    },
+    addResource(state, payload) {
+      state[payload.resource].push(payload.data);
+    },
     setUser(state, user) {
       state.user = user;
     },
@@ -32,6 +45,8 @@ export default new Vuex.Store({
     },
     resetState(state, user) {
       state.user = {};
+      state.boards = [];
+      state.activeBoard = {};
     }
   },
   actions: {
@@ -64,25 +79,26 @@ export default new Vuex.Store({
       } catch (e) {
         console.warn(e.message);
       }
-    },
+    }
     //#endregion
 
     //#region -- BOARDS --
-    getBoards({ commit, dispatch }) {
-      api.get("boards").then(res => {
-        commit("setBoards", res.data);
-      });
-    },
-    addBoard({ commit, dispatch }, boardData) {
-      api.post("boards", boardData).then(serverBoard => {
-        dispatch("getBoards");
-      });
-    },
-    deleteBoard({ commit, dispatch }, boardId) {
-      api.delete("boards/" + boardId).then(serverBoard => {
-        dispatch("getBoards");
-      });
-    }
+    // moved to module
+    // getBoards({ commit, dispatch }) {
+    //   api.get("boards").then(res => {
+    //     commit("setBoards", res.data);
+    //   });
+    // },
+    // addBoard({ commit, dispatch }, boardData) {
+    //   api.post("boards", boardData).then(serverBoard => {
+    //     dispatch("getBoards");
+    //   });
+    // },
+    // deleteBoard({ commit, dispatch }, boardId) {
+    //   api.delete("boards/" + boardId).then(serverBoard => {
+    //     dispatch("getBoards");
+    //   });
+    // }
     //#endregion
 
     //#region -- LISTS --

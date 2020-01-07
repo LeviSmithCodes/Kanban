@@ -1,10 +1,14 @@
 <template>
   <div class="boards">
-    Welcome to your boards
-    <button class="btn btn-warning" @click="logout">Log Out</button>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="http://localhost:8080/#/">Home</a>
+      <div class="navbar" id="navbarSupportedContent">
+        <button class="btn btn-warning" @click="logout">Log Out</button>
+      </div>
+    </nav>Welcome to your boards
     <br />
     <br />
-    <form @submit.prevent="addBoard">
+    <form @submit.prevent="createBoard">
       <input type="text" placeholder="title" v-model="newBoard.title" required />
       <input type="text" placeholder="description" v-model="newBoard.description" />
 
@@ -40,8 +44,8 @@ export default {
     }
   },
   methods: {
-    addBoard() {
-      this.$store.dispatch("addBoard", this.newBoard);
+    createBoard() {
+      this.$store.dispatch("createBoard", this.newBoard);
       this.newBoard = { title: "", description: "" };
     },
     logout() {
