@@ -1,5 +1,8 @@
 <template>
-  <div class="board">{{board.title}}</div>
+  <div class="board">
+    <h2>{{board.title}}</h2>
+    <div class="description">{{board.description}}</div>
+  </div>
 </template>
 
 <script>
