@@ -5,6 +5,7 @@ import router from "../router/index";
 import AuthService from "../AuthService";
 import boardModule from "./boardModule.js";
 import listModule from "./listModule.js";
+import { STATES } from "mongoose";
 
 Vue.use(Vuex);
 
@@ -28,7 +29,8 @@ export default new Vuex.Store({
     user: {},
     boards: [],
     activeBoard: {},
-    lists: []
+    lists: [],
+    tasks: []
   },
   mutations: {
     setResource(state, payload) {
@@ -42,6 +44,12 @@ export default new Vuex.Store({
     },
     setBoards(state, boards) {
       state.boards = boards;
+    },
+    setTasks(state, tasks) {
+      state.tasks = tasks;
+    },
+    setActiveBoard(state, board) {
+      state.activeBoard = board;
     },
     resetState(state, user) {
       state.user = {};
@@ -79,6 +87,33 @@ export default new Vuex.Store({
       } catch (e) {
         console.warn(e.message);
       }
+    },
+    async createTask({ commit, dispatch }, payload) {
+      try {
+        let res = await api.post("tasks", payload);
+        commit("setTasks", res.data);
+      } catch (error) {
+        console.warn(error.message);
+      }
+    },
+    async getTasks({ commit, dispatch }) {
+      try {
+        // debugger;
+        let res = await api.get("tasks");
+        // debugger;
+        commit("setTasks", res.data);
+      } catch (error) {
+        console.warn(error.message);
+      }
+    },
+    async deleteTask({ commit, dispatch }, payload) {
+      // debugger;
+      let res = await api.delete("tasks/" + payload.taskId);
+
+      console.log(res.data);
+      // debugger;
+      dispatch("getTasks", payload.listId);
+      // commit("setListsAfterDelete", res.data);
     }
     //#endregion
 

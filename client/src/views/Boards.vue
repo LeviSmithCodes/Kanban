@@ -22,7 +22,10 @@
     <dl>
       <div v-for="board in boards" :key="board._id">
         <dt>
-          <router-link :to="{name: 'board', params: {boardId: board._id}}">{{board.title}}</router-link>
+          <router-link
+            :to="{name: 'board', params: {boardId: board._id}}"
+            @click="setActiveBoard"
+          >{{board.title}}</router-link>
           <button class="btn btn-danger" @click="deleteBoard(board._id)">
             <i class="fas fa-trash-alt trash-right"></i>
           </button>
@@ -61,6 +64,12 @@ export default {
     },
     deleteBoard(boardId) {
       this.$store.dispatch("deleteBoard", boardId);
+    },
+    setActiveBoard() {
+      this.$store.state.activeBoard = {};
+      debugger;
+      this.$store.state.activeBoard = this.board;
+      this.$store.commit("setActiveBoard", this.board);
     }
   }
 };

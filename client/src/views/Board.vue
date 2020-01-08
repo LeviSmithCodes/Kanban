@@ -9,16 +9,13 @@
     </form>
     <br />
     <div v-for="list in lists" :key="list._id">
-      {{list.title}}
-      <!-- {{lists.title}} -->
-      <button class="btn btn-danger" @click="deleteList(list._id)">
-        <i class="fas fa-trash-alt"></i>
-      </button>
+      <List :listData="list" />
     </div>
   </div>
 </template>
 
 <script>
+import List from "../components/List";
 export default {
   name: "board",
   mounted() {
@@ -41,7 +38,7 @@ export default {
     },
     board() {
       return (
-        // TODO This does not work on page reload because the boards array is empty in the store
+        // This does not work on page reload because the boards array is empty in the store
         this.$store.state.boards
         // .find(b => b._id == this.boardId) || {
         //   title: "Loading..."
@@ -59,6 +56,9 @@ export default {
     deleteList(id) {
       this.$store.dispatch("deleteList", { listId: id, boardId: this.boardId });
     }
+  },
+  components: {
+    List
   },
   props: ["boardId"]
 };
