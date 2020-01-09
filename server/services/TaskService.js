@@ -22,8 +22,16 @@ class TaskService {
     }
   }
 
-  async edit(taskData)
-
+  async edit(taskData) {
+    let data = await _repository.findOneAndUpdate(
+      { _id: taskData.currentTaskId },
+      { listId: taskData.newListId },
+      { new: true }
+    );
+    if (!data) {
+      throw new ApiError("Task already exist on lists (or other error)", 400);
+    }
+  }
 }
 const _taskService = new TaskService();
 export default _taskService;

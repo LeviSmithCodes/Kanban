@@ -116,10 +116,9 @@ export default new Vuex.Store({
       // commit("setListsAfterDelete", res.data);
     },
     async editTask({ commit, dispatch }, payload) {
-      let res = await api.put(
-        "tasks/" + payload.currentTaskId,
-        payload.newListId
-      );
+      let res = await api.put("tasks/" + payload.currentTaskId, payload);
+      debugger;
+      dispatch("getTasks", res.data);
     }
     //#endregion
 
