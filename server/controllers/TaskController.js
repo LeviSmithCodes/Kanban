@@ -10,6 +10,7 @@ export default class TaskController {
       .get("/:id", this.getByListId)
       .get("", this.getAll)
       .post("", this.create)
+      .put("/:id", this.edit)
       .delete("/:id", this.delete)
       .use(this.defaultRoute);
   }
@@ -48,6 +49,15 @@ export default class TaskController {
     try {
       await _taskService.delete(req.params.id);
       return res.send("Successfully deleted");
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async edit(req, res, next) {
+    try {
+      let data = await _taskService.edit(req.body);
+      return res.send(data);
     } catch (error) {
       next(error);
     }

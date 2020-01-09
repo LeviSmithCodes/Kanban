@@ -21,6 +21,9 @@ class TaskService {
       throw new ApiError("Invalid ID or you do not own this list", 400);
     }
   }
+
+  async edit(taskData)
+
 }
 const _taskService = new TaskService();
 export default _taskService;
