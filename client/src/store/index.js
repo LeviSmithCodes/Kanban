@@ -30,7 +30,8 @@ export default new Vuex.Store({
     boards: [],
     activeBoard: {},
     lists: [],
-    tasks: []
+    tasks: [],
+    comments: []
   },
   mutations: {
     setResource(state, payload) {
@@ -50,6 +51,9 @@ export default new Vuex.Store({
     },
     setActiveBoard(state, board) {
       state.activeBoard = board;
+    },
+    setComments(state, comments) {
+      state.comments = comments;
     },
     resetState(state, user) {
       state.user = {};
@@ -119,8 +123,36 @@ export default new Vuex.Store({
       let res = await api.put("tasks/" + payload.currentTaskId, payload);
       debugger;
       dispatch("getTasks", res.data);
-    }
+    },
     //#endregion
+
+    async createComment({ commit, dispatch }, payload) {
+      try {
+        let res = await api.post("comments", payload);
+        commit("setComments", res.data);
+      } catch (error) {
+        console.warn(error.message);
+      }
+    },
+    async getComments({ commit, dispatch }) {
+      try {
+        debugger;
+        let res = await api.get("comments");
+        debugger;
+        commit("setComments", res.data);
+      } catch (error) {
+        console.warn(error.message);
+      }
+    },
+    async deleteComment({ commit, dispatch }, payload) {
+      // debugger;
+      let res = await api.delete("comments/" + payload.commentId);
+
+      console.log(res.data);
+      // debugger;
+      dispatch("getComments", payload.taskId);
+      // commit("setListsAfterDelete", res.data);
+    }
 
     //#region -- BOARDS --
     // moved to module

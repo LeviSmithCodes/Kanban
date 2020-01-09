@@ -22,7 +22,7 @@
       <!-- {{listData}} -->
       <!-- {{lists.title}} -->
     </div>
-    test data: {{tasks[0]}}
+    <!-- test data: {{tasks[0]}} -->
   </div>
 </template>
 
