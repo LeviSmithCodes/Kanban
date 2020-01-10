@@ -1,14 +1,19 @@
 <template>
-  <div>
-    <!-- <div v-for="list in lists" :key="list._id"> -->
-    <div class="card" style="width: 18rem;">
-      <div class="card-body">
+  <!--<div style="d-flex flex-row">-->
+  <div class="col-3">
+    <div class="card" style="width: 15rem;">
+      <div class="card-body shadow">
         <h5 class="card-title">{{listData.title}}</h5>
         <button class="btn btn-danger" @click="deleteList(listData._id)">
           <i class="fas fa-trash-alt"></i>
         </button>
       </div>
-      <ul v-for="task in tasks" :key="task.id" class="list-group list-group-flush">
+      <ul
+        v-for="task in tasks"
+        :key="task.id"
+        class="list-group list-group-flush"
+        style="list-style-type:none"
+      >
         <b>Task:</b>
         <task-component :taskData="task" />
       </ul>
@@ -19,11 +24,7 @@
           <button type="submit">Create Task</button>
         </form>
       </div>
-      <!-- </div> -->
-      <!-- {{listData}} -->
-      <!-- {{lists.title}} -->
     </div>
-    <!-- test data: {{tasks[0]}} -->
   </div>
 </template>
 

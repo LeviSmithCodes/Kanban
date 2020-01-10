@@ -8,8 +8,10 @@
       <button type="submit">Create List</button>
     </form>
     <br />
-    <div v-for="list in lists" :key="list._id">
-      <List :listData="list" />
+    <div class="row" style="padding: 0rem 3rem">
+      <div v-for="list in lists" :key="list._id">
+        <List :listData="list" />
+      </div>
     </div>
   </div>
 </template>
