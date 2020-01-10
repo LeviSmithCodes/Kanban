@@ -1,6 +1,7 @@
 import _taskService from "../services/TaskService";
 import express from "express";
 import { Authorize } from "../middleware/authorize.js";
+import _commentService from "../services/CommentService";
 //PUBLIC
 export default class TaskController {
   constructor() {
@@ -9,6 +10,7 @@ export default class TaskController {
       .use(Authorize.authenticated)
       .get("/:id", this.getByListId)
       .get("", this.getAll)
+      .get("/:id/comments", this.getCommentsByTaskId)
       .post("", this.create)
       .put("/:id", this.edit)
       .delete("/:id", this.delete)
@@ -20,7 +22,16 @@ export default class TaskController {
   }
   async getByListId(req, res, next) {
     try {
-      let data = await _taskService.getTaskByListId(req.params.id);
+      let data = await _taskService.getTasksByListId(req.params.id);
+      return res.send(data);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async getCommentsByTaskId(req, res, next) {
+    try {
+      let data = await _commentService.getCommentsByTaskId(req.params.id);
       return res.send(data);
     } catch (error) {
       next(error);

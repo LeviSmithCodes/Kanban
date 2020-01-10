@@ -67,7 +67,7 @@ export default {
     },
     setActiveBoard() {
       this.$store.state.activeBoard = {};
-      debugger;
+      // debugger;
       this.$store.state.activeBoard = this.board;
       this.$store.commit("setActiveBoard", this.board);
     }

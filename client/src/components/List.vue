@@ -9,6 +9,7 @@
         </button>
       </div>
       <ul v-for="task in tasks" :key="task.id" class="list-group list-group-flush">
+        <b>Task:</b>
         <task-component :taskData="task" />
       </ul>
       <div class="card-body">
@@ -65,7 +66,7 @@ export default {
     },
     createTask() {
       let task = { ...this.newTask };
-      debugger;
+      // debugger;
       this.$store.dispatch("createTask", task);
       this.newTask = {
         description: "",

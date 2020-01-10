@@ -25,7 +25,9 @@ export default {
   name: "Task",
   mounted() {
     // debugger;
-    this.$store.dispatch("getTasks", this.taskData.listId);
+    // this.$store.dispatch("getTasks", this.taskData.listId);
+    this.$store.dispatch("getComments", this.taskData.id);
+    // debugger;
   },
   data() {
     return {
@@ -54,7 +56,7 @@ export default {
     },
     createComment() {
       let comment = { ...this.newComment };
-      debugger;
+      // debugger;
       this.$store.dispatch("createComment", comment);
       this.newComment = {
         content: "",
@@ -68,9 +70,11 @@ export default {
       return this.$store.state.lists;
     },
     comments() {
-      return this.$store.state.comments.filter(
-        c => c.taskId == this.taskData.id
-      );
+      // debugger;
+      return this.$store.state.comments[this.taskData.id];
+      // .filter(
+      // c => c.taskId == this.taskData.id
+      // );
     }
   },
   props: ["taskData"],

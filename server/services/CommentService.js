@@ -3,7 +3,7 @@ import Comment from "../models/Comment";
 import ApiError from "../utils/ApiError";
 const _repository = mongoose.model("Comment", Comment);
 class CommentService {
-  async getCommentByTaskId(taskId) {
+  async getCommentsByTaskId(taskId) {
     return await _repository.find({ taskId: taskId });
   }
   async create(commentData) {

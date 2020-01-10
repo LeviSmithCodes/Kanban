@@ -49,7 +49,7 @@ export default {
   methods: {
     createList() {
       let list = { ...this.newList };
-      debugger;
+      // debugger;
       this.$store.dispatch("createList", list);
       this.newList = { title: "", boardId: this.boardId };
     },

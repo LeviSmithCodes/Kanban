@@ -31,7 +31,7 @@ export default new Vuex.Store({
     activeBoard: {},
     lists: [],
     tasks: {},
-    comments: []
+    comments: {}
   },
   mutations: {
     setResource(state, payload) {
@@ -54,8 +54,10 @@ export default new Vuex.Store({
     setActiveBoard(state, board) {
       state.activeBoard = board;
     },
-    setComments(state, comments) {
-      state.comments = comments;
+    setComments(state, data) {
+      // debugger;
+      Vue.set(state.comments, data.taskId, data.comments);
+      // debugger;
     },
     resetState(state, user) {
       state.user = {};
@@ -104,9 +106,9 @@ export default new Vuex.Store({
     },
     async getTasks({ commit, dispatch }, listId) {
       try {
-        debugger;
+        // debugger;
         let res = await api.get(`lists/${listId}/tasks`); //REVIEW
-        debugger;
+        // debugger;
         commit("setTasks", { listId, tasks: res.data });
       } catch (error) {
         console.warn(error.message);
@@ -123,7 +125,7 @@ export default new Vuex.Store({
     },
     async editTask({ commit, dispatch }, payload) {
       let res = await api.put("tasks/" + payload.currentTaskId, payload);
-      debugger;
+      // debugger;
       dispatch("getTasks", res.data);
     },
     //#endregion
@@ -136,12 +138,15 @@ export default new Vuex.Store({
         console.warn(error.message);
       }
     },
-    async getComments({ commit, dispatch }) {
+    async getComments({ commit, dispatch }, taskId) {
       try {
-        debugger;
-        let res = await api.get("comments");
-        debugger;
-        commit("setComments", res.data);
+        let res = await api.get(`tasks/${taskId}/comments`); //REVIEW
+        // debugger;
+        commit("setComments", { taskId, comments: res.data });
+        // debugger;
+        // let res = await api.get("comments");
+        // debugger;
+        // commit("setComments", res.data);
       } catch (error) {
         console.warn(error.message);
       }

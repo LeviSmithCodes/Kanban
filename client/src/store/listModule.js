@@ -21,7 +21,7 @@ export default {
     getLists({ commit, dispatch }) {
       // debugger;
       api.get("lists").then(res => {
-        debugger;
+        // debugger;
         commit("setResource", { resource: "lists", data: res.data });
       });
     },
