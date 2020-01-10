@@ -1,11 +1,8 @@
 <template>
   <div>
     {{commentData.description}}
-    This should be a comment
-    <button
-      class="btn btn-danger"
-      @click="deleteComment(commentData._id)"
-    >
+    <!-- This should be a comment -->
+    <button class="btn btn-danger" @click="deleteComment(commentData._id)">
       <i class="fas fa-trash-alt"></i>
     </button>
   </div>

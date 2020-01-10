@@ -30,7 +30,7 @@ export default new Vuex.Store({
     boards: [],
     activeBoard: {},
     lists: [],
-    tasks: [],
+    tasks: {},
     comments: []
   },
   mutations: {
@@ -46,8 +46,10 @@ export default new Vuex.Store({
     setBoards(state, boards) {
       state.boards = boards;
     },
-    setTasks(state, tasks) {
-      state.tasks = tasks;
+    setTasks(state, data) {
+      // state.tasks[data.listId] = data.tasks;
+      //REVIEW
+      Vue.set(state.tasks, data.listId, data.tasks);
     },
     setActiveBoard(state, board) {
       state.activeBoard = board;
@@ -100,12 +102,12 @@ export default new Vuex.Store({
         console.warn(error.message);
       }
     },
-    async getTasks({ commit, dispatch }) {
+    async getTasks({ commit, dispatch }, listId) {
       try {
-        // debugger;
-        let res = await api.get("tasks");
-        // debugger;
-        commit("setTasks", res.data);
+        debugger;
+        let res = await api.get(`lists/${listId}/tasks`); //REVIEW
+        debugger;
+        commit("setTasks", { listId, tasks: res.data });
       } catch (error) {
         console.warn(error.message);
       }

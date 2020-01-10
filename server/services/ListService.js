@@ -9,6 +9,10 @@ class ListService {
     return await _repository.find({ boardId: boardId });
   }
 
+  // async getTasksByListId(listId) {
+  //   return await _repository.find({ listId: listId });
+  // }
+
   async create(listData) {
     let data = await _repository.create(listData);
     return data;

@@ -50,7 +50,7 @@ export default {
     //   // ) //   l => l.boardId == this.$route.params.id // .find(
     // },
     tasks() {
-      return this.$store.state.tasks.filter(t => t.listId == this.listData.id);
+      return this.$store.state.tasks[this.listData.id];
     }
   },
   components: {

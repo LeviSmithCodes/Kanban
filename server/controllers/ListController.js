@@ -1,6 +1,7 @@
 import _listService from "../services/ListService";
 import express from "express";
 import { Authorize } from "../middleware/authorize.js";
+import _taskService from "../services/TaskService";
 
 //PUBLIC
 export default class ListController {
@@ -9,7 +10,8 @@ export default class ListController {
       .Router()
       .use(Authorize.authenticated)
       .get("", this.getByBoardId)
-
+      // FIXME This should have a get tasks by listId
+      .get("/:id/tasks", this.getTasksByListId)
       .post("", this.create)
 
       .delete("/:id", this.delete)
@@ -26,6 +28,15 @@ export default class ListController {
     try {
       let data = await _listService.getListByBoardId(req.params.id);
       return res.send(data);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async getTasksByListId(req, res, next) {
+    try {
+      let data = await _taskService.getTasksByListId(req.params.id);
+      return res.status(201).send(data);
     } catch (error) {
       next(error);
     }

@@ -3,7 +3,7 @@ import Task from "../models/Task";
 import ApiError from "../utils/ApiError";
 const _repository = mongoose.model("Task", Task);
 class TaskService {
-  async getTaskByListId(listId) {
+  async getTasksByListId(listId) {
     return await _repository.find({ listId: listId });
   }
   async create(taskData) {
