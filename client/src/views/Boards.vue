@@ -1,6 +1,6 @@
 <template>
   <div class="boards">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
+    <nav class="navbar navbar-dark bg-dark mb-3">
       <a
         class="navbar-brand"
         href="http://localhost:8080/#/"
@@ -85,5 +85,13 @@ export default {
 .trash-right:hover:before {
   font-family: "FontAwesome";
   content: "\f056";
+}
+
+.boards {
+  color: white !important;
+  text-shadow: 2px 2px black;
+}
+a {
+  color: white !important;
 }
 </style>

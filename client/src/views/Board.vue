@@ -1,6 +1,6 @@
 <template>
   <div class="board">
-    <h2>{{board.title}}</h2>
+    <h2 class="title">{{board.title}}</h2>
     <div class="description">{{board.description}}</div>
     <form @submit.prevent="createList">
       <input type="text" placeholder="title" v-model="newList.title" required />
@@ -65,3 +65,11 @@ export default {
   props: ["boardId"]
 };
 </script>
+
+<style>
+.description,
+.title {
+  color: white !important;
+  text-shadow: 2px 2px black;
+}
+</style>

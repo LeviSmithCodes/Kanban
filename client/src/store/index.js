@@ -99,7 +99,8 @@ export default new Vuex.Store({
     async createTask({ commit, dispatch }, payload) {
       try {
         let res = await api.post("tasks", payload);
-        commit("setTasks", res.data);
+        // commit("setTasks", res.data);
+        dispatch("getTasks", payload.listId);
       } catch (error) {
         console.warn(error.message);
       }

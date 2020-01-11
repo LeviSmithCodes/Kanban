@@ -28,7 +28,8 @@
         class="list-group list-group-flush"
         style="list-style-type:none"
       >
-        <b>Task:</b>
+        <hr />
+        <!-- <b>Task:</b> -->
         <task-component :taskData="task" />
       </ul>
     </div>

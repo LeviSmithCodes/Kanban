@@ -1,5 +1,7 @@
 <template>
   <li>
+    <hr />
+    <b>Task:</b>
     {{ taskData.description }}
     <button
       class="btn btn-danger delete-task"
@@ -99,5 +101,16 @@ export default {
 <style scoped>
 .fa-minus-circle:hover:before {
   color: red;
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0.75),
+    rgba(0, 0, 0, 0)
+  );
 }
 </style>
