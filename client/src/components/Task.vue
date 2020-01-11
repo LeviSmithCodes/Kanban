@@ -1,23 +1,35 @@
 <template>
   <li>
-    {{taskData.description}}
+    {{ taskData.description }}
+    <button
+      class="btn btn-danger delete-task"
+      style="background: none; border: none;"
+      @click="deleteTask(taskData._id)"
+    >
+      <i class="fas fa-minus-circle" style="color: grey; background: none;"></i>
+    </button>
+    <div>
+      <select class="form-control" @change="changeTaskList($event)">
+        <option value selected disabled>Move Task</option>
+        <option v-for="list in availableLists" :value="list.id" :key="list.id">{{ list.title }}</option>
+      </select>
+    </div>
+    <div class="card-body">
+      <form @submit.prevent="createComment" style="display: inline-flex">
+        <input type="text" placeholder="Add comment..." v-model="newComment.content" required />
+        <div class="input-group-append">
+          <button class="btn btn-secondary" type="submit">
+            <i class="fas fa-plus"></i>
+          </button>
+        </div>
+      </form>
+    </div>
     <ul v-for="comment in comments" :key="comment.id" class="list-group list-group-flush">
       <comment-component :commentData="comment" />
     </ul>
-    <form @submit.prevent="createComment">
-      <input type="text" placeholder="comment" v-model="newComment.content" required />
-      <button type="submit">Create Comment</button>
-    </form>
-    <select class="form-control" @change="changeTaskList($event)">
-      <option value selected disabled>Select List</option>
-      <option v-for="list in availableLists" :value="list.id" :key="list.id">{{ list.title }}</option>
-    </select>
-    <button class="btn btn-danger" @click="deleteTask(taskData._id)">
-      <i class="fas fa-trash-alt"></i>
-    </button>
   </li>
   <!-- {{taskData}} -->
-</template>
+</template> 
 
 <script>
 import CommentComponent from "../components/Comment";
@@ -84,5 +96,8 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.fa-minus-circle:hover:before {
+  color: red;
+}
 </style>

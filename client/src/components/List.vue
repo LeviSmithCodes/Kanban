@@ -1,12 +1,26 @@
 <template>
   <!--<div style="d-flex flex-row">-->
   <div class="col-3">
-    <div class="card" style="width: 15rem;">
-      <div class="card-body shadow">
-        <h5 class="card-title">{{listData.title}}</h5>
-        <button class="btn btn-danger" @click="deleteList(listData._id)">
+    <div class="card shadow" style="width: 20rem;">
+      <div class="card-body">
+        <button
+          id="deleteList"
+          class="btn btn-danger float-right"
+          @click="deleteList(listData._id)"
+        >
           <i class="fas fa-trash-alt"></i>
         </button>
+        <h3 class="card-title">{{ listData.title }}</h3>
+        <div class="card-body">
+          <form @submit.prevent="createTask" style="display: inline-flex;">
+            <input type="text" placeholder="Add task..." v-model="newTask.description" required />
+            <div class="input-group-append">
+              <button class="btn btn-warning" type="submit">
+                <i class="fas fa-plus"></i>
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
       <ul
         v-for="task in tasks"
@@ -17,13 +31,6 @@
         <b>Task:</b>
         <task-component :taskData="task" />
       </ul>
-      <div class="card-body">
-        <form @submit.prevent="createTask">
-          <input type="text" placeholder="task" v-model="newTask.description" required />
-
-          <button type="submit">Create Task</button>
-        </form>
-      </div>
     </div>
   </div>
 </template>
