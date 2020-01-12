@@ -56,9 +56,10 @@ export default class TaskController {
       next(error);
     }
   }
+  //TODO Make delete work without a page refresh
   async delete(req, res, next) {
     try {
-      await _taskService.delete(req.params.id);
+      await _taskService.delete(req.params.id, req.session.uid);
       return res.send("Successfully deleted");
     } catch (error) {
       next(error);

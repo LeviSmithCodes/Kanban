@@ -15,8 +15,11 @@ class TaskService {
     let data = await _repository.find();
     return data;
   }
-  async delete(id) {
-    let data = await _repository.findOneAndDelete({ _id: id });
+  async delete(id, userId) {
+    let data = await _repository.findOneAndDelete({
+      _id: id,
+      authorId: userId
+    });
     if (!data) {
       throw new ApiError("Invalid ID or you do not own this list", 400);
     }

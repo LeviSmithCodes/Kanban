@@ -54,7 +54,7 @@ export default class ListController {
 
   async delete(req, res, next) {
     try {
-      await _listService.delete(req.params.id);
+      await _listService.delete(req.params.id, req.session.uid);
       return res.send("Successfully deleted");
     } catch (error) {
       next(error);

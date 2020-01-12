@@ -1,6 +1,6 @@
 <template>
   <!--<div style="d-flex flex-row">-->
-  <div class="col-3">
+  <div class="col-3" style="margin-bottom: 3rem">
     <div class="card shadow" style="width: 20rem;">
       <div class="card-body">
         <button
