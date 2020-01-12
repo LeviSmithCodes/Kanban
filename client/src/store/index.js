@@ -121,6 +121,7 @@ export default new Vuex.Store({
 
       console.log(res.data);
       // debugger;
+      // TODO why is this not updating the page without a refresh?
       dispatch("getTasks", payload.listId);
       // commit("setListsAfterDelete", res.data);
     },

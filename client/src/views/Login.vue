@@ -1,5 +1,5 @@
 <template>
-  <div class="login">
+  <div class="login" style="margin-top: 2rem">
     <form v-if="loginForm" @submit.prevent="loginUser">
       <input type="email" v-model="creds.email" placeholder="email" />
       <input type="password" v-model="creds.password" placeholder="password" />
@@ -55,5 +55,10 @@ export default {
 <style>
 .action {
   cursor: pointer;
+}
+
+p {
+  color: white !important;
+  text-shadow: 2px 2px black;
 }
 </style>

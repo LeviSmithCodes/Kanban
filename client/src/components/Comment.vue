@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="margin-bottom: 1rem">
     <i>Comment:</i>
     {{ commentData.content }}
     <!-- This should be a comment -->
