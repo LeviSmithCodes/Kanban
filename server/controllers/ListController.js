@@ -26,7 +26,10 @@ export default class ListController {
 
   async getByBoardId(req, res, next) {
     try {
-      let data = await _listService.getListByBoardId(req.params.id);
+      let data = await _listService.getListByBoardId(
+        req.params.id,
+        req.session.uid
+      );
       return res.send(data);
     } catch (error) {
       next(error);

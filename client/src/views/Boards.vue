@@ -3,7 +3,7 @@
     <nav class="navbar navbar-dark bg-dark mb-3">
       <a
         class="navbar-brand"
-        href="http://localhost:8080/#/"
+        href="https://kanban-jdandlevi.herokuapp.com/"
         style="font-variant: all-small-caps"
       >Home</a>
       <div class="navbar" id="navbarSupportedContent">

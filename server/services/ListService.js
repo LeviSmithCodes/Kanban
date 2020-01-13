@@ -5,8 +5,8 @@ import ApiError from "../utils/ApiError";
 const _repository = mongoose.model("List", List);
 
 class ListService {
-  async getListByBoardId(boardId) {
-    return await _repository.find({ boardId: boardId });
+  async getListByBoardId(boardId, userId) {
+    return await _repository.find({ boardId: boardId, authorId: userId });
   }
 
   // async getTasksByListId(listId) {
