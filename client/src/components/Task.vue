@@ -68,8 +68,20 @@ export default {
       this.selectedList =
         event.target.options[event.target.options.selectedIndex].value;
       console.log(this.selectedList);
+      // console.log(
+      //   "changeTaskList says this.taskData.listId is",
+      //   this.taskData.listId
+      // );
       let newId = this.selectedList;
-      let payload = { newListId: newId, currentTaskId: this.taskData.id };
+      let payload = {
+        newListId: newId,
+        currentTaskId: this.taskData.id,
+        currentListId: this.taskData.listId
+      };
+      // console.log(
+      //   "changeTaskList says payload.currentListId is",
+      //   payload.currentListId
+      // );
       this.$store.dispatch("editTask", payload);
       console.log("newId made in changetasklist", newId);
     },

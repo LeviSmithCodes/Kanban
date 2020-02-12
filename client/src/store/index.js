@@ -128,7 +128,9 @@ export default new Vuex.Store({
     async editTask({ commit, dispatch }, payload) {
       let res = await api.put("tasks/" + payload.currentTaskId, payload);
       // debugger;
-      dispatch("getTasks", res.data);
+      console.log("index.js editTask says payload is", payload);
+      dispatch("getTasks", payload.newListId);
+      dispatch("getTasks", payload.currentListId);
     },
     //#endregion
 
