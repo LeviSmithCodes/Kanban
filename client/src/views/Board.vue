@@ -1,5 +1,15 @@
 <template>
   <div class="board">
+    <nav class="navbar navbar-dark bg-dark mb-3">
+      <a
+        class="navbar-brand"
+        href="https://kanban-jdandlevi.herokuapp.com/"
+        style="font-variant: all-small-caps"
+      >Home</a>
+      <div class="navbar" id="navbarSupportedContent">
+        <button class="btn btn-warning" @click="logout">Log Out</button>
+      </div>
+    </nav>
     <h2 class="title">{{board.title}}</h2>
     <div class="description">{{board.description}}</div>
     <form @submit.prevent="createList">
@@ -57,6 +67,9 @@ export default {
     },
     deleteList(id) {
       this.$store.dispatch("deleteList", { listId: id, boardId: this.boardId });
+    },
+    logout() {
+      this.$store.dispatch("logout");
     }
   },
   components: {
