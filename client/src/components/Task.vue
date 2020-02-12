@@ -130,4 +130,9 @@ hr {
     rgba(0, 0, 0, 0)
   );
 }
+
+.form-control {
+  width: 80%;
+  margin-left: 2rem;
+}
 </style>
