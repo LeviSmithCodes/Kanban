@@ -1,5 +1,5 @@
 <template>
-  <div class="board">
+  <div class="board container-fluid">
     <nav class="navbar navbar-dark bg-dark mb-3">
       <a
         class="navbar-brand"
@@ -84,5 +84,8 @@ export default {
 .title {
   color: white !important;
   text-shadow: 2px 2px black;
+}
+.navbar {
+  margin: 0 -15px 0 -15px;
 }
 </style>

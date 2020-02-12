@@ -1,5 +1,5 @@
 <template>
-  <div class="boards">
+  <div class="boards container-fluid">
     <nav class="navbar navbar-dark bg-dark mb-3">
       <a
         class="navbar-brand"
