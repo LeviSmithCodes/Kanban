@@ -45,7 +45,10 @@ export default class BoardsController {
 
   async getListsByBoardId(req, res, next) {
     try {
-      let data = await _listService.getListByBoardId(req.params.id);
+      let data = await _listService.getListByBoardId(
+        req.params.id,
+        req.session.uid
+      ); // NOTE this was somehow missing req.session.uid? how did it work previously?
       return res.send(data);
     } catch (error) {
       next(error);
