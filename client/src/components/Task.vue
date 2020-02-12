@@ -13,7 +13,12 @@
     <div>
       <select class="form-control" @change="changeTaskList($event)">
         <option value selected disabled>Move Task</option>
-        <option v-for="list in availableLists" :value="list.id" :key="list.id">{{ list.title }}</option>
+        <option
+          v-for="list in availableLists"
+          :value="list.id"
+          :key="list.id"
+          v-if="list.id != taskData.listId"
+        >{{ list.title }}</option>
       </select>
     </div>
     <div class="card-body">
