@@ -61,7 +61,8 @@ export default {
     deleteTask(id) {
       this.$store.dispatch("deleteTask", {
         taskId: this.taskData.id,
-        boardId: this.taskData.boardId
+        boardId: this.taskData.boardId,
+        listId: this.taskData.listId
       });
     },
     changeTaskList(event) {
